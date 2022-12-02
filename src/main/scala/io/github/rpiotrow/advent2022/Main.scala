@@ -1,6 +1,7 @@
 package io.github.rpiotrow.advent2022
 
 import io.github.rpiotrow.advent2022.day01.CalorieCounting
+import io.github.rpiotrow.advent2022.day02.RockPaperScissors
 
 import scopt.OParser
 import zio.*
@@ -8,7 +9,8 @@ import zio.*
 type Solution = ZIO[Any, String | java.io.IOException, (Long, Long)]
 
 private val days: Map[Int, Solution] = Map(
-  1 -> CalorieCounting.solution
+  1 -> CalorieCounting.solution,
+  2 -> RockPaperScissors.solution
 )
 
 object Main extends ZIOAppDefault:
