@@ -6,6 +6,7 @@ import io.github.rpiotrow.advent2022.day03.RucksackReorganization
 import io.github.rpiotrow.advent2022.day04.CampCleanup
 import io.github.rpiotrow.advent2022.day05.SupplyStacks
 import io.github.rpiotrow.advent2022.day06.TuningTrouble
+import io.github.rpiotrow.advent2022.day07.NoSpaceLeftOnDevice
 
 import scopt.OParser
 import zio.*
@@ -20,7 +21,8 @@ private val days: Map[Int, Solution] = Map(
   3 -> RucksackReorganization.solution,
   4 -> CampCleanup.solution,
   5 -> SupplyStacks.solution,
-  6 -> TuningTrouble.solution
+  6 -> TuningTrouble.solution,
+  7 -> NoSpaceLeftOnDevice.solution
 )
 
 object Main extends ZIOAppDefault:
