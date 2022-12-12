@@ -25,26 +25,26 @@ object CathodeRayTube:
       cpuStates.broadcast(2, 10).flatMap {
         case Chunk(streamCopy1, streamCopy2) =>
           for
-            fiber1 <- streamCopy1
+            part1 <- streamCopy1
               .filter { cpuState => cycleToComputeSignalStrength.contains(cpuState.cycle) }
               .map { cpuState =>
                 cpuState.cycle * cpuState.registerValueDuringCycle
               }
               .runSum
               .fork
-            fiber2 <- streamCopy2
+            part2 <- streamCopy2
               .map { cpuState =>
-                val rawIndex = (cpuState.cycle - 1) % 40 + 1
+                val rowIndex = (cpuState.cycle - 1) % 40 + 1
                 val register = cpuState.registerValueDuringCycle
-                if rawIndex >= register && rawIndex <= register + 2 then '#' else '.'
+                if rowIndex >= register && rowIndex <= register + 2 then '#' else '.'
               }
               .grouped(40)
               .mapZIO(chunk => Console.printLine(chunk.mkString))
               .runDrain
               .mapError(_.toString)
               .fork
-            signalStrengthsSum <- fiber1.join
-            _ <- fiber2.join
+            signalStrengthsSum <- part1.join
+            _ <- part2.join
             _ <- Console.printLine(s"The sum of signal strengths is $signalStrengthsSum")
           yield (signalStrengthsSum, 0L) // answer to second part is printed ASCII art
         case _ => ZIO.dieMessage("impossible")
