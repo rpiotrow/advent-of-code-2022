@@ -9,6 +9,6 @@ object Day12HillClimbingAlgorithmSolutionSpec extends ZIOSpecDefault:
   def spec = suite("HillClimbingAlgorithmSpec")(
     test("HillClimbingAlgorithm solution") {
       for solution <- HillClimbingAlgorithm.solution
-      yield assert(solution)(equalTo((330L, 0L)))
+      yield assert(solution)(equalTo((330L, 321L)))
     }
   )

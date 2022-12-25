@@ -9,7 +9,12 @@ case class Hill(
 ):
 
   def shortestPaths: ZIO[Any, String, Map[Position, Distance]] =
-    computeShortestPaths(start, Distance.zero, Set.empty, PriorityQueue.empty, Map.empty)
+    computeShortestPaths(end, Distance.zero, Set.empty, PriorityQueue.empty, Map.empty)
+
+  def lowestNodes: List[Position] =
+    heights.zipWithIndex.map { (line, y) =>
+      line.zipWithIndex.filter { (c, _) => c == Height.zero }.map { (_, x) => Position(y, x) }
+    }.flatten.toList
 
   private def computeShortestPaths(
       currentNode: Position,
@@ -59,7 +64,7 @@ case class Hill(
       height(position.left).map(h => (position.left, h)),
       height(position.right).map(h => (position.right, h))
     )
-      .filter { _.exists { case (_, h) => h.diff(currentHeight) <= 1 } }
+      .filter { _.exists { case (_, h) => currentHeight.diff(h) <= 1 } }
       .collect { case Some((p, _)) => p }
 
 object Hill:

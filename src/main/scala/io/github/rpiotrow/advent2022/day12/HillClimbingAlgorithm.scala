@@ -9,6 +9,8 @@ object HillClimbingAlgorithm:
       lines <- Input.readLines("day12.input").runCollect.map(_.toIndexedSeq)
       hill <- Hill.parse(lines)
       distances <- hill.shortestPaths
-      steps1 <- ZIO.fromOption(distances.get(hill.end)).orElseFail("no answer!!!")
-      _ <- Console.printLine(s"There is $steps1 steps required to move from S to the E")
-    yield (steps1.toLong, 0L)
+      fewestStepsFromS <- ZIO.fromOption(distances.get(hill.start)).orElseFail("no answer!!!")
+      fewestStepsFromAnyA = hill.lowestNodes.map(distances.get).collect { case Some(v) => v }.min
+      _ <- Console.printLine(s"There is $fewestStepsFromS fewest steps from 'S' to 'E'")
+      _ <- Console.printLine(s"There is $fewestStepsFromAnyA fewest steps from any 'a' to 'E'")
+    yield (fewestStepsFromS.toLong, fewestStepsFromAnyA.toLong)

@@ -61,6 +61,6 @@ object HillSpec extends ZIOSpecDefault:
       for
         hill <- Hill.parse(sampleInput)
         distances <- hill.shortestPaths
-      yield assert(distances.get(hill.end))(equalTo(Some(31)))
+      yield assert(distances.get(hill.start))(equalTo(Some(31)))
     }
   )
