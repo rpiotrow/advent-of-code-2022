@@ -9,6 +9,7 @@ import io.github.rpiotrow.advent2022.day06.TuningTrouble
 import io.github.rpiotrow.advent2022.day07.NoSpaceLeftOnDevice
 import io.github.rpiotrow.advent2022.day09.RopeBridge
 import io.github.rpiotrow.advent2022.day10.CathodeRayTube
+import io.github.rpiotrow.advent2022.day12.HillClimbingAlgorithm
 
 import scopt.OParser
 import zio.*
@@ -26,7 +27,8 @@ private val days: Map[Int, Solution] = Map(
   6 -> TuningTrouble.solution,
   7 -> NoSpaceLeftOnDevice.solution,
   9 -> RopeBridge.solution,
-  10 -> CathodeRayTube.solution
+  10 -> CathodeRayTube.solution,
+  12 -> HillClimbingAlgorithm.solution
 )
 
 object Main extends ZIOAppDefault:
