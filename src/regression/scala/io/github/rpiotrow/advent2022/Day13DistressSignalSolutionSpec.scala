@@ -9,6 +9,6 @@ object Day13DistressSignalSolutionSpec extends ZIOSpecDefault:
   def spec = suite("DistressSignalSpec")(
     test("DistressSignal solution") {
       for solution <- DistressSignal.solution
-      yield assert(solution)(equalTo((5717L, 0L)))
+      yield assert(solution)(equalTo((5717L, 25935L)))
     }
   )

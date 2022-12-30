@@ -10,6 +10,27 @@ object Packet:
   enum Comparison:
     case RightOrder, WrongOrder, NotDetermined
 
+  val dividerPackets = List(
+    Packet.Packets(
+      List(
+        Packet.Packets(
+          List(
+            Packet.Number(2)
+          )
+        )
+      )
+    ),
+    Packet.Packets(
+      List(
+        Packet.Packets(
+          List(
+            Packet.Number(6)
+          )
+        )
+      )
+    )
+  )
+
   import Comparison.*
 
   @tailrec
